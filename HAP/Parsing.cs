@@ -20,6 +20,7 @@ namespace HAP
         public void Detectar(string text)
         {
             string auxtext = "";
+            string auxtextag = "";
             foreach (char Char in text)
             {
                 switch (Char)
@@ -38,6 +39,7 @@ namespace HAP
                         auxtext += Char;
                         if (EtiquetaCorrecta(auxtext))
                         {
+                            auxtextag += auxtext;
                             Token token = new Token("etiqueta", "prueba");
                             tokens.Add(token);
                             auxtext = "";
@@ -102,9 +104,20 @@ namespace HAP
         {
             foreach (Token token in tokens)
             {
-                Console.WriteLine(token.Tipo + " " + token.Valor);
+                Console.WriteLine($"Tipo: " + token.Tipo);
+                Console.WriteLine($"Valor: " + token.Valor);
+                
+                
 
             }
+        }
+
+        public void TipoEtiqueta(string text)
+        {
+            text = text.Remove(0, 1);
+            text = text.Remove(text.Length-1, 1);
+            Console.WriteLine(text);
+            
         }
 
         public void LimpiaLista()

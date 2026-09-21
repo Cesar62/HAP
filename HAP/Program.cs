@@ -18,6 +18,7 @@ namespace HAP
                 
                 crearToken.Detectar(text);
                 crearToken.MostrarTokens();
+                crearToken.TipoEtiqueta(text);
                 crearToken.LimpiaLista();
             }
         }
