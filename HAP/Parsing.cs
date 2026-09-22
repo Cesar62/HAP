@@ -1,11 +1,12 @@
 namespace HAP
 {
-    public class Token
+    public class Token //clase que creara los token que identifican que cosa es que
     {
+        //Tipo de etiqueta texto, estructura etc
         public string? Tipo; // con ? se pone que acepte valores null
-        public string? Valor;
+        public string? Valor; //valor que contiene la etiqueta
 
-        public Token(string tipo, string valor)
+        public Token(string tipo, string valor) //constructor del objecto
         {
             Tipo = tipo;
             Valor = valor;
@@ -21,6 +22,8 @@ namespace HAP
         {
             string auxtext = "";
             string auxtextag = "";
+            string tipo = "";
+            string valor = "";
             foreach (char Char in text)
             {
                 switch (Char)
@@ -85,6 +88,7 @@ namespace HAP
                         {
                             EtiquetaCierre = true;
                         }
+
                         break;
 
                 }
@@ -100,24 +104,30 @@ namespace HAP
             }
         }
 
+
+        public bool TipoEtiqueta(string text, ref string tipo, ref string valor)
+        {
+            text = text.Remove(0, 1);
+            text = text.Remove(text.Length-1, 1);
+
+            switch (text.ToLower())
+            {
+                case "p":
+                return true;
+
+                default:
+                return false;
+            }
+            
+        }
+
         public void MostrarTokens()
         {
             foreach (Token token in tokens)
             {
                 Console.WriteLine($"Tipo: " + token.Tipo);
                 Console.WriteLine($"Valor: " + token.Valor);
-                
-                
-
             }
-        }
-
-        public void TipoEtiqueta(string text)
-        {
-            text = text.Remove(0, 1);
-            text = text.Remove(text.Length-1, 1);
-            Console.WriteLine(text);
-            
         }
 
         public void LimpiaLista()
